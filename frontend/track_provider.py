@@ -1,38 +1,55 @@
 import asyncio
 import anyascii
 import re
-import requests
+from pathlib import Path
 from config import PASSWORD
-import json
 from linux import get_media_info
+import requests
 
-async def get_song():
-    media = await get_media_info()
+AUDIO_DIR = Path(__file__).parent / "audio"
 
-    if media is None:
-        return None
-    # заглушка, потом поменять!!
-    #media = {
-        "title": "ванна, красный пол",
-        "artist": "CUPSIZE",
-        "playback_status": "Playing"
-    #}
 
-    slug = slugify(media["artist"] + "_" + media["title"])
+async def get_song(username, title, artist):
+    slug = slugify(f"{artist}_{title}")
+
+    if slug.startswith("vanna_krasnyy_pol"):
+        audio_path = AUDIO_DIR / "vanna_krasnyy_pol.mp3"
+        if audio_path.exists():
+            return {
+                "data": {
+                    "n": title,
+                    "a": artist or "Vanna",
+                },
+                "audio_url": "/audio/vanna_krasnyy_pol.mp3",
+                "words": [],
+                "lines": [],
+                "bpm": 120,
+                "theme": {
+                    "color_pallete": {
+                        "primary": "#ff0088",
+                        "secondary": "#090909",
+                        "accent": "#ff73d3"
+                    }
+                }
+            }
 
     url = "https://api.lyricapp.ru/tracks/get"
-    payload = create_payload(slug)
+    payload = create_payload(
+        username=username,
+        slug=slug,
+        title=title,
+        artist=artist
+    )
 
-    #response = requests.post(url, json=payload)
+    response = requests.post(url, json=payload)
+    if response.status_code != 200:
+        return None
 
-    #print(response)
-    #print(response.headers)
-    #print(response.text)
+    response_json = response.json()
+    song = response_json["data"]
+    song["album"] = response_json.get("album")
 
-
-    song = get_song_data()
     return song
-
 
 def slugify(text: str):
     normalized = anyascii.anyascii(text)
@@ -41,16 +58,36 @@ def slugify(text: str):
     normalized = re.sub(r"[^a-z0-9_]", "", normalized)
     return normalized.strip("_")
 
-def get_song_data():
-    with open("mock_response.json", encoding="utf-8") as f:
-        return json.load(f)
-
-def create_payload(slug: str):
+def create_payload(
+    username: str,
+    slug: str,
+    title: str,
+    artist: str | None
+) -> dict:
     return {
-        "user_id": 1,
+        "username": username,
         "password": PASSWORD,
-        "slug": slug
+        "slug": slug,
+        "title": title,
+        "artist": artist
     }
 
+
+def get_track_list(username: str, page: int = 1) -> dict | None:
+    url = "https://api.lyricapp.ru/tracks/list"
+
+    payload = {
+        "username": username,
+        "password": PASSWORD,
+        "page": page,
+    }
+
+    response = requests.post(url, json=payload)
+
+    if response.status_code != 200:
+        return None
+
+    return response.json()
+
 if __name__ == "__main__":
-    asyncio.run(get_song())
+    asyncio.run(get_song("yneskk"))

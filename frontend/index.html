@@ -3,54 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syllable</title>
+    <title>Lyrica</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="background-glow"></div>
+<div id="register-screen">
 
-<main class="player">
+    <div class="register-container">
 
-    <section class="cover-section">
-        <img id="cover" src="" alt="album cover">
-    </section>
+        <h1>Lyrica</h1>
 
-    <section class="info-section">
-        <h1 id="song-name">Loading...</h1>
-        <h2 id="artist-name"></h2>
-    </section>
+        <p>
+            Создайте аккаунт, чтобы начать пользоваться приложением
+        </p>
 
-   <div class="custom-select">
-    <button class="custom-select-button" id="custom-select-button">
-        Ванна, красный пол — CUPSIZE
-    </button>
+        <input
+            type="email"
+            id="email-input"
+            placeholder="Email"
+        >
 
-    <div class="custom-select-list" id="custom-select-list">
-        <div class="custom-select-item" data-value="vanna">
-            Ванна, красный пол — CUPSIZE
-        </div>
+        <input
+            type="text"
+            id="username-input"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="password-input"
+            placeholder="Password"
+        >
+
+        <button id="register-button">
+            Зарегистрироваться
+        </button>
+
+        <button id="login-button">
+            Войти
+        </button>
+
     </div>
+
 </div>
 
-    <section class="controls">
-        <button id="start-btn">Start</button>
-        <button id="reset-btn">Reset</button>
-    </section>
+<div id="login-screen" style="display: none;">
 
-    <audio id="audio"></audio>
+    <div class="register-container">
 
-    <section class="palette-section" id="palette"></section>
+        <h1>Lyrica</h1>
 
-    <section class="progress-section">
-        <div class="progress-bar">
-            <div id="progress-fill"></div>
+        <p>
+            Войдите в свой аккаунт
+        </p>
+
+        <input
+            type="text"
+            id="login-username-input"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="login-password-input"
+            placeholder="Password"
+        >
+
+        <button id="login-submit-button">
+            Войти
+        </button>
+
+        <button id="back-button">
+            Назад
+        </button>
+
+    </div>
+
+</div>
+
+<div class="background-glow"></div>
+
+<main id="library-screen" style="display: none;">
+
+    <div class="library-search">
+
+        <input
+            id="song-search"
+            type="text"
+            placeholder="Найдите песню..."
+        >
+
+    </div>
+
+    <div id="tracks-list">
+
+    </div>
+
+</main>
+
+<main class="player" id="player-screen" style="display: none;">
+    <button id="back-to-library">
+    ← Назад
+    </button>
+
+    <div id="song-content">
+
+        <div id="player-content">
+
+            <section class="cover-section">
+                <img id="cover" src="" alt="album cover">
+            </section>
+
+            <section class="info-section">
+                <h1 id="song-name">Loading...</h1>
+                <h2 id="artist-name"></h2>
+            </section>
+
+            <section class="controls">
+                <button id="start-btn">Start</button>
+                <button id="reset-btn">Reset</button>
+            </section>
+
+            <audio id="audio"></audio>
+
+            <section class="progress-section">
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+            </section>
+
+            <section class="lyrics-section">
+                <div id="lyrics"></div>
+            </section>
+
         </div>
-    </section>
 
-    <section class="lyrics-section">
-        <div id="lyrics"></div>
-    </section>
+    </div>
 
 </main>
 
