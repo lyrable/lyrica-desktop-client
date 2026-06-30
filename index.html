@@ -3,56 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syllable</title>
+    <title>Lyrica</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="background-glow"></div>
+<div id="register-screen">
 
-<main class="player">
+    <div class="register-container">
 
-    <section class="cover-section">
-        <img id="cover" src="" alt="album cover">
-    </section>
+        <h1>Lyrica</h1>
 
-    <section class="info-section">
-        <h1 id="song-name">Loading...</h1>
-        <h2 id="artist-name"></h2>
-    </section>
+        <p>
+            Создайте аккаунт, чтобы начать пользоваться приложением
+        </p>
 
-    <div class="custom-select">
-        <button class="custom-select-button" id="custom-select-button">
-            JUICY — INSTASAMKA
+        <input
+            type="email"
+            id="email-input"
+            placeholder="Email"
+        >
+
+        <input
+            type="text"
+            id="username-input"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="password-input"
+            placeholder="Password"
+        >
+
+        <button id="register-button">
+            Зарегистрироваться
         </button>
 
-        <div class="custom-select-list" id="custom-select-list">
-            <div class="custom-select-item" data-value="JUICY">JUICY — INSTASAMKA</div>
-            <div class="custom-select-item" data-value="HateYourself">Hate Yourself — TV Girl</div>
-            <div class="custom-select-item" data-value="лишьоднажды">Лишь однажды — Валентин Стрыкало</div>
-            <div class="custom-select-item" data-value="намэтонравится">нам это нравится — CUPSIZE</div>
-            <div class="custom-select-item" data-value="Падатьвгрязь">Падать в грязь — Монеточка</div>
-        </div>
+        <button id="login-button">
+            Войти
+        </button>
+
     </div>
 
-    <section class="controls">
-        <button id="start-btn">Start</button>
-        <button id="reset-btn">Reset</button>
-    </section>
+</div>
 
-    <audio id="audio"></audio>
+<div id="login-screen" style="display: none;">
 
-    <section class="palette-section" id="palette"></section>
+    <div class="register-container">
 
-    <section class="progress-section">
-        <div class="progress-bar">
-            <div id="progress-fill"></div>
+        <h1>Lyrica</h1>
+
+        <p>
+            Войдите в свой аккаунт
+        </p>
+
+        <input
+            type="text"
+            id="login-username-input"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="login-password-input"
+            placeholder="Password"
+        >
+
+        <button id="login-submit-button">
+            Войти
+        </button>
+
+        <button id="back-button">
+            Назад
+        </button>
+
+    </div>
+
+</div>
+
+<div class="background-glow"></div>
+
+<main id="library-screen" style="display: none;">
+
+    <div class="library-search">
+
+        <input
+            id="song-search"
+            type="text"
+            placeholder="Найдите песню..."
+        >
+
+    </div>
+
+    <div id="tracks-list">
+
+    </div>
+
+</main>
+
+<main class="player" id="player-screen" style="display: none;">
+    <button id="back-to-library">
+    ← Назад
+    </button>
+
+    <div id="song-content">
+
+        <div id="player-content">
+
+            <section class="cover-section">
+                <img id="cover" src="" alt="album cover">
+            </section>
+
+            <section class="info-section">
+                <h1 id="song-name">Loading...</h1>
+                <h2 id="artist-name"></h2>
+            </section>
+
+            <section class="controls">
+                <button id="start-btn">Start</button>
+                <button id="reset-btn">Reset</button>
+            </section>
+
+            <audio id="audio"></audio>
+
+            <section class="progress-section">
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+            </section>
+
+            <section class="lyrics-section">
+                <div id="lyrics"></div>
+            </section>
+
         </div>
-    </section>
 
-    <section class="lyrics-section">
-        <div id="lyrics"></div>
-    </section>
+    </div>
 
 </main>
 
