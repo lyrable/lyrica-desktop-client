@@ -83,3 +83,10 @@ python server.py        # поднимет WebSocket на ws://localhost:8765
 Готово: пайплайн обработки (YouTube -> Demucs -> Whisper -> quantizer), WebSocket-сервер, плеер с анимацией слов и слогов, цветовая тема из обложки, прогресс-бар, Linux-вочер плеера через playerctl.
 
 В работе и дальше: поиск трека, полноценная интеграция с api.lyricapp.ru, аккаунты пользователей, редактор таймингов, рейтинг версий, экспорт в LRC.
+
+## 
+<img width="1280" height="708" alt="1" src="https://github.com/user-attachments/assets/a877eb7f-71db-4421-812b-62eaf3b206f5" />
+<img width="1280" height="715" alt="3" src="https://github.com/user-attachments/assets/1211a8a0-2383-4bd7-9c28-379d2cd880a5" />
+<img width="1280" height="898" alt="4" src="https://github.com/user-attachments/assets/0db3aea1-290c-4892-8c74-580a779d22aa" />
+
+
